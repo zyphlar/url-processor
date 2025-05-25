@@ -19,10 +19,10 @@ function fromWindows1251(percentEncoded: string) {
   );
 }
 
-const kSharedViaOM = 'Shared via <a href="https://organicmaps.app">Organic Maps</a>';
+const kSharedViaOM = 'Shared via <a href="https://comaps.app">CoMaps</a>';
 
 function normalizeNameAndTitle(name: string | undefined): [string, string] {
-  let title = 'Organic Maps';
+  let title = 'CoMaps';
   if (name) {
     name = name.replace(/\+|_/g, ' '); // Convert underscores back to spaces.
     try {

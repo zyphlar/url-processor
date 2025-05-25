@@ -1,13 +1,13 @@
 import { getAssetFromKV, mapRequestToAsset } from '@cloudflare/kv-asset-handler';
 import { onGe0Decode } from './ge0';
 
-const NOT_FOUND_REDIRECT_URL = 'https://organicmaps.app';
+const NOT_FOUND_REDIRECT_URL = 'https://comaps.app';
 const GE0_TEMPLATE_PATH = '/ge0.html';
 const APPSTORE = 'https://apps.apple.com/app/organic-maps/id1567437057';
-const GOOGLE = 'https://play.google.com/store/apps/details?id=app.organicmaps';
+const GOOGLE = 'https://play.google.com/store/apps/details?id=app.comaps';
 const HUAWEI = 'https://appgallery.huawei.com/#/app/C104325611';
-const FDROID = 'https://f-droid.org/en/packages/app.organicmaps/';
-const OMAPS_REWRITE_RULES: Record<string, string> = {
+const FDROID = 'https://f-droid.org/en/packages/app.comaps.fdroid/';
+const COMAPS_REWRITE_RULES: Record<string, string> = {
   '/api': '/test.html',
   '/apple-touch-icon.png': '/icons/apple-touch-icon.png',
   '/apple-touch-icon-precomposed.png': '/icons/apple-touch-icon.png',
@@ -36,9 +36,8 @@ const OMAPS_REWRITE_RULES: Record<string, string> = {
   '/iphone': APPSTORE,
   '/ipad': APPSTORE,
   '/ipod': APPSTORE,
-  '/matrix': 'https://matrix.to/#/#organicmaps:matrix.org',
-  '/news': 'https://organicmaps.app/news',
-  '/tr/news': 'https://organicmaps.app/tr/news',
+  '/matrix': 'https://matrix.to/#/%23comaps:matrix.org',
+  '/news': 'https://comaps.app/news',
   '/test': '/test.html',
   '/test/': '/test.html',
 };
@@ -60,17 +59,17 @@ async function handleFetchEvent(event: FetchEvent) {
   const { hostname, pathname } = new URL(event.request.url);
 
   // First, process all known redirects.
-  if ((DEBUG || hostname === 'omaps.app') && pathname in OMAPS_REWRITE_RULES) {
-    if (OMAPS_REWRITE_RULES[pathname].startsWith('http')) return Response.redirect(OMAPS_REWRITE_RULES[pathname], 302);
+  if ((DEBUG || hostname === 'comaps.app') && pathname in COMAPS_REWRITE_RULES) {
+    if (COMAPS_REWRITE_RULES[pathname].startsWith('http')) return Response.redirect(COMAPS_REWRITE_RULES[pathname], 302);
   }
 
   // See https://github.com/cloudflare/kv-asset-handler#optional-arguments
   const getAssetOptions = {
     cacheControl: { bypassCache: DEBUG },
     mapRequestToAsset: (request: Request) => {
-      if ((DEBUG || hostname === 'omaps.app') && pathname in OMAPS_REWRITE_RULES) {
+      if ((DEBUG || hostname === 'comaps.app') && pathname in COMAPS_REWRITE_RULES) {
         const url = new URL(request.url);
-        url.pathname = OMAPS_REWRITE_RULES[pathname];
+        url.pathname = COMAPS_REWRITE_RULES[pathname];
         request = new Request(url.toString(), request);
       }
       return mapRequestToAsset(request);

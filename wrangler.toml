@@ -1,8 +1,8 @@
 # Default worker is for dev only.
-# See omaps and organicmaps environments below for production.
+# See comaps environments below for production.
 name = 'url-processor'
-# Organic Maps CF Account ID.
-account_id = '462f578f0939f041e2c24ec99adce458'
+# CoMaps CF Account ID.
+account_id = ''
 workers_dev = true
 compatibility_date = '2023-07-05'
 main = './workers-site/index.js'
@@ -16,11 +16,11 @@ command = 'npm i --prefer-offline --no-audit && npm run build'
 [vars]
 DEBUG = true
 
-[env.omaps]
-name = 'url-processor-omaps'
+[env.comaps]
+name = 'url-processor-comaps'
 workers_dev = false
 # See the full list of handled files in the code.
-route = 'omaps.app/*'
+route = 'comaps.app/*'
 
-[env.omaps.vars]
+[env.comaps.vars]
 DEBUG = false

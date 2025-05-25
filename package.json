@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "omaps-url-handler",
+  "name": "comaps-url-handler",
   "version": "1.0.0",
   "description": "Processes specific HTTP requests to domains",
   "main": "workers-site/index.js",

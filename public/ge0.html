@@ -7,11 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-  <meta name="apple-itunes-app" content="app-id=1567437057, app-argument=om:/${path}">
+  <!--<meta name="apple-itunes-app" content="app-id=1567437057, app-argument=cm:/${path}">-->
 
-  <meta name="description" content="Free Android & iOS offline OSM (OpenStreetMap) maps app for travelers, tourists, drivers, hikers, and cyclists from creators of MAPS.ME (MapsWithMe).">
-  <meta itemprop="name" content="Free Android & iOS offline OSM (OpenStreetMap) maps app for travelers, tourists, drivers, hikers, and cyclists from creators of MAPS.ME (MapsWithMe).">
-  <meta itemprop="description" content="Free Android & iOS offline OSM (OpenStreetMap) maps app for travelers, tourists, drivers, hikers, and cyclists from creators of MAPS.ME (MapsWithMe).">
+  <meta name="description" content="Free offline maps app for travellers, tourists, hikers, and cyclists based on OpenStreetMap data. Privacy and community focused, and open-source forever ♥️">
+  <meta itemprop="name" content="Free offline maps app for travellers, tourists, hikers, and cyclists based on OpenStreetMap data. Privacy and community focused, and open-source forever ♥️">
+  <meta itemprop="description" content="Free offline maps app for travellers, tourists, hikers, and cyclists based on OpenStreetMap data. Privacy and community focused, and open-source forever ♥️">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
@@ -137,16 +137,16 @@
 
 <body>
   <div id="header">
-    <a href="https://organicmaps.app/">
+    <a href="https://comaps.app/">
       <img id="logo" src="/icons/logo-icon.svg"/>
     </a>
     <span id="name">${name}</span>
     <div>
       <a id="open" onclick="triggerApp()" class="linkcolour link">
-        Open in Organic Maps
+        Open in CoMaps
       </a>
       <a id="install" href="/get.html" target="_blank" class="linkcolour link">
-        Install Organic Maps
+        Install CoMaps
       </a>
       <a href="https://www.osm.org/query?mlat=${lat}&mlon=${lon}&lat=${lat}&lon=${lon}#map=${zoom}/${lat}/${lon}" target="_blank" class="linkcolour link">
         See on OpenStreetMap
@@ -189,7 +189,7 @@
     }
 
     function triggerApp() {
-      window.location='om:/${path}';
+      window.location='cm:/${path}';
       if(!isiOS) {
         setTimeout(openStore, 700);
       }
