@@ -177,7 +177,7 @@
       <a id="open" onclick="triggerApp()" class="button">
         Open in CoMaps
       </a>
-      <a id="install" href="/get.html" target="_blank" class="button">
+      <a id="install" onclick="openStore()" target="_blank" class="button">
         Install CoMaps
       </a>
       <a href="https://www.osm.org/query?mlat=${lat}&mlon=${lon}&lat=${lat}&lon=${lon}#map=${zoom}/${lat}/${lon}" target="_blank" class="button">
@@ -216,6 +216,9 @@
     };
 
     function openStore() {
+      if(isDesktop){
+       window.open("https://comaps.app/download"); 
+      }
       window.location='/get.html';
     }
 
