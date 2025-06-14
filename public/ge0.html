@@ -13,13 +13,35 @@
   <meta itemprop="name" content="Free offline maps app for travellers, tourists, hikers, and cyclists based on OpenStreetMap data. Privacy and community focused, and open-source forever ♥️">
   <meta itemprop="description" content="Free offline maps app for travellers, tourists, hikers, and cyclists based on OpenStreetMap data. Privacy and community focused, and open-source forever ♥️">
 
+<!--TODO: Return when we have a logo
   <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
   <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#449f33">
+-->
+  <link rel="preconnect" href="https://rsms.me/">
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+  <!-- Maplibre GL -->
+  <link href="https://unpkg.com/maplibre-gl/dist/maplibre-gl.css" rel="stylesheet" />
+  <script src="https://unpkg.com/maplibre-gl/dist/maplibre-gl.js"></script>
+
+  <!-- Maplibre GL Leaflet  -->
+  <script src="https://unpkg.com/@maplibre/maplibre-gl-leaflet/leaflet-maplibre-gl.js"></script>
+
   <style>
+    :root {
+      font-family: Inter, sans-serif;
+      font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
+      color: white;
+    }
+    @supports (font-variation-settings: normal) {
+      :root { font-family: InterVariable, sans-serif; }
+    }
 
     html,
     body {
@@ -27,47 +49,56 @@
       padding: 0;
       width: 100%;
       height: 100%;
-      font-family: sans-serif;
-      font-weight: lighter;
-      line-height: 1.2em;
       display: flex;
       flex-flow: column;
     }
 
-    .link {
+    .button {
+      border: 1.2px solid transparent;
       border-radius: 25px;
-      border: 1px solid #449f33;
       margin-top: 2px;
+      color: #588157;
+      background-color: white;
+      text-decoration: none;
       margin-bottom: 2px;
       display: inline-block;
-    }
-
-    .linkcolour {
       border-radius: 25px;
       padding: 5px;
       padding-left: 10px;
       padding-right: 10px;
-      text-decoration: none;
-      color: #449f33;
-      vertical-align: middle;
-      display: inline-block;
+      transition: all 0.07s;
     }
 
-    .linkcolour:hover {
-      background-color: #449f33;
-      color: #FFF;
+    .button:hover {
+      background-color: #37653f;
+      color: white;
+      border: 1.2px solid white;
+      transform: scale(1.03);
+      transition: all 0.07s;
       cursor: pointer;
     }
 
-    .linkcolour:active {
-      background-color: #24541b;
+    .button:active {
+      color: white;
+      background-color: #37653f;
+    }
+        
+    .textlogo {
+      text-decoration: none;
+      margin: 0;
+      color: white;
+      font-weight: bold;
+      font-size: 2em;
+      line-height: 100%;
+      margin-left:0.2em;
+      transform: translateY(-0.03em);
     }
 
     #header {
-      background-color: #FFF;
+      background-color: #588157;
       text-align: center;
       padding: 10px;
-      box-shadow: 0 3px 10px 0 #00000030;
+
       display: flex;
       flex-flow: row wrap;
       align-items: center;
@@ -131,30 +162,31 @@
       to { opacity: 0; }
     }
   </style>
-  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+
   <title>${title}</title>
 </head>
 
 <body>
   <div id="header">
-    <a href="https://comaps.app/">
-      <img id="logo" src="/icons/logo-icon.svg"/>
+    <a href="https://comaps.app/"class="textlogo">
+      CoMaps
+      <!--Reuse when we have logo <img id="logo" src="/icons/logo-icon.svg"/>-->
     </a>
     <span id="name">${name}</span>
     <div>
-      <a id="open" onclick="triggerApp()" class="linkcolour link">
+      <a id="open" onclick="triggerApp()" class="button">
         Open in CoMaps
       </a>
-      <a id="install" href="/get.html" target="_blank" class="linkcolour link">
+      <a id="install" href="/get.html" target="_blank" class="button">
         Install CoMaps
       </a>
-      <a href="https://www.osm.org/query?mlat=${lat}&mlon=${lon}&lat=${lat}&lon=${lon}#map=${zoom}/${lat}/${lon}" target="_blank" class="linkcolour link">
+      <a href="https://www.osm.org/query?mlat=${lat}&mlon=${lon}&lat=${lat}&lon=${lon}#map=${zoom}/${lat}/${lon}" target="_blank" class="button">
         See on OpenStreetMap
       </a>
-      <div class="link">
-        <a id = "geolink" href="geo:${lat},${lon}?Z=${zoom}" onclick="copyCoords()" target="_blank" class="linkcolour" style="border-radius: 100px 0px 0px 100px;">
+      <div class="button">
+        <a id = "geolink" href="geo:${lat},${lon}?Z=${zoom}" onclick="copyCoords()" target="_blank" style="border-radius: 100px 0px 0px 100px;">
           ${lat}, ${lon}
-        </a><a id="cpbtn" href="#" onclick="copyCoords()" class="linkcolour" style="border-radius: 0px 100px 100px 0px; border-left: solid 1px #449f33">
+        </a><a id="cpbtn" href="#" onclick="copyCoords()" style="border-radius: 0px 100px 100px 0px; border-left: solid 1px #449f33">
           📋
         </a>
       </div>
@@ -206,17 +238,21 @@
     var lon = ${ lon };
     var zoom = ${ zoom };
     var map = L.map('map').setView([lat, lon], zoom);
+
     var POI_Icon = L.icon({
       iconUrl: '/placemarks/poi-icon.svg',
       iconSize: [25, 36.5],
       iconAnchor: [12.5, 36.5],
       popupAnchor:  [0, -36.5]
     });
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { /*https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png*/
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      
+    L.maplibreGL({
+      style: 'https://tiles.openfreemap.org/styles/bright',
+      attribution: '<a href="https://www.openfreemap.org">OpenFreeMap</a> © <a href="https://www.openmaptiles.org/">OpenMapTiles</a> Data from <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
       maxZoom: 19,
+      zoomSnap: 0,
     }).addTo(map);
+
     map.zoomControl.setPosition('bottomright');
 
     var marker = L.marker([lat, lon], {icon: POI_Icon}).addTo(map);
