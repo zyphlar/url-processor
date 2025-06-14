@@ -19,7 +19,7 @@ function fromWindows1251(percentEncoded: string) {
   );
 }
 
-const kSharedViaOM = 'Shared via <a href="https://comaps.app">CoMaps</a>';
+const kSharedViaOM = 'Shared with CoMaps';
 
 function normalizeNameAndTitle(name: string | undefined): [string, string] {
   let title = 'CoMaps';
