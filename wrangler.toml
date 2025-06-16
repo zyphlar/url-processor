@@ -4,7 +4,7 @@ name = 'url-processor'
 # CoMaps CF Account ID.
 account_id = ''
 workers_dev = true
-compatibility_date = '2023-07-05'
+compatibility_date = '2025-06-16'
 main = './workers-site/index.js'
 
 [site]
