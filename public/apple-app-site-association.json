@@ -3,7 +3,7 @@
     "apps": [],
     "details": [
       {
-        "appID": "9Z6432XD7L.app.comaps",
+        "appID": "534D2KJBUK.app.comaps",
         "paths": [
           "NOT /",
           "NOT /app",
@@ -32,7 +32,7 @@
         ]
       },
       {
-        "appID": "9Z6432XD7L.app.comaps.debug",
+        "appID": "534D2KJBUK.app.comaps.debug",
         "paths": [
           "NOT /",
           "NOT /app",
@@ -61,7 +61,7 @@
         ]
       },
       {
-        "appID": "9Z6432XD7L.app.comaps.test",
+        "appID": "534D2KJBUK.app.comaps.test",
         "paths": [
           "NOT /",
           "NOT /app",
