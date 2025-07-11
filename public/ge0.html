@@ -20,17 +20,10 @@
 -->
   <link rel="preconnect" href="https://rsms.me/">
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-  
-  <!-- Leaflet -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
   <!-- Maplibre GL -->
   <link href="https://unpkg.com/maplibre-gl/dist/maplibre-gl.css" rel="stylesheet" />
   <script src="https://unpkg.com/maplibre-gl/dist/maplibre-gl.js"></script>
-
-  <!-- Maplibre GL Leaflet  -->
-  <script src="https://unpkg.com/@maplibre/maplibre-gl-leaflet/leaflet-maplibre-gl.js"></script>
 
   <style>
     :root {
@@ -236,26 +229,17 @@
     var lat = ${ lat };
     var lon = ${ lon };
     var zoom = ${ zoom };
-    var map = L.map('map').setView([lat, lon], zoom);
 
-    var POI_Icon = L.icon({
-      iconUrl: '/placemarks/poi-icon.svg',
-      iconSize: [25, 36.5],
-      iconAnchor: [12.5, 36.5],
-      popupAnchor:  [0, -36.5]
+    var map = new maplibregl.Map({
+        container: 'map', // container id
+        style: 'https://tiles.openfreemap.org/styles/bright',
+        center: [lon, lat],
+        zoom: zoom
     });
-      
-    L.maplibreGL({
-      style: 'https://tiles.openfreemap.org/styles/bright',
-      attribution: '<a href="https://www.openfreemap.org">OpenFreeMap</a> © <a href="https://www.openmaptiles.org/">OpenMapTiles</a> Data from <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-      maxZoom: 19,
-      zoomSnap: 0,
-    }).addTo(map);
 
-    map.zoomControl.setPosition('bottomright');
+    const popup = new maplibregl.Popup({offset: 25}).setText('${name}');
 
-    var marker = L.marker([lat, lon], {icon: POI_Icon}).addTo(map);
-    marker.bindPopup('${name}');//.openPopup();
+    var marker = new maplibregl.Marker().setLngLat([lon, lat]).setPopup(popup).addTo(map);
   </script>
 </body>
 
