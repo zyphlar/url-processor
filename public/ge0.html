@@ -237,6 +237,14 @@
         zoom: zoom
     });
 
+    map.addControl(
+        new maplibregl.NavigationControl({
+            visualizePitch: true,
+            showZoom: true,
+            showCompass: true
+        }), 'bottom-right'
+    );
+
     const popup = new maplibregl.Popup({offset: 25}).setText('${name}');
 
     var marker = new maplibregl.Marker().setLngLat([lon, lat]).setPopup(popup).addTo(map);
