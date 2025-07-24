@@ -24,3 +24,6 @@ route = 'comaps.app/*'
 
 [env.comaps.vars]
 DEBUG = false
+
+[observability.logs]
+enabled = true
