@@ -25,5 +25,9 @@ Use `npx wrangler dev` for localhost development.
 
 ## Deployment
 
+Currently, any commit to Codeberg is mirrored to github.com/zyphlar/url-processor and picked up via a Cloudflare-Github integration hook.
+
+### Deprecated, consider reactivating
+
 Deploy to prod manually using `npx wrangler publish --env comaps` or this
 [action](https://codeberg.org/comaps/url-processor/actions/workflows/deploy-master-to-prod.yml).
