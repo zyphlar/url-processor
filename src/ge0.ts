@@ -19,7 +19,7 @@ function fromWindows1251(percentEncoded: string) {
   );
 }
 
-const kSharedViaOM = 'Shared with CoMaps';
+const kSharedViaCM = 'Shared with CoMaps';
 
 function normalizeNameAndTitle(name: string | undefined): [string, string] {
   let title = 'CoMaps';
@@ -42,7 +42,7 @@ function normalizeNameAndTitle(name: string | undefined): [string, string] {
     name = name.replace("'", '&rsquo;'); // To embed in popup.
     title = name + ' | ' + title;
   } else {
-    name = kSharedViaOM;
+    name = kSharedViaCM;
   }
   return [name, title];
 }
@@ -104,7 +104,7 @@ export async function onGe0Decode(template: string, url: string): Promise<Respon
   const llz = decodeLatLonZoom(encodedLatLonZoom);
   let [name, title] = normalizeNameAndTitle(params.length > 1 ? params[1] : undefined);
   // XSS prevention.
-  if (name != kSharedViaOM) name = encodeHTML(name);
+  if (name != kSharedViaCM) name = encodeHTML(name);
   title = encodeHTML(title);
 
   template = replaceInTemplate(template, {
