@@ -235,11 +235,25 @@
     var zoom = ${ zoom };
 
     var map = new maplibregl.Map({
-        container: 'map', // container id
+        container: 'map',
         style: 'https://tiles.openfreemap.org/styles/bright',
         center: [lon, lat],
         zoom: zoom
     });
+
+    let theme;
+
+    setInterval(() => {
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches && theme != "dark") {
+        theme = "dark";
+        map.setStyle('https://tiles.openfreemap.org/styles/fiord');
+      }
+
+      else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches && theme != "light") {
+        theme = "light";
+        map.setStyle('https://tiles.openfreemap.org/styles/bright');
+      }
+    }, 10);
 
     map.addControl(
         new maplibregl.NavigationControl({
