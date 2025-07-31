@@ -1,15 +1,12 @@
 # Static resources and short links (ge0) decoder for CoMaps
 
-Root domain redirects to https://comaps.app/.
+The root domain redirects to https://comaps.app/.
 
 URLs like `http(s)://comaps.at/ENCODEDCOORDINATES/PINNAME` are decoded to lat, lon and zoom level. Then the OSM
 map is displayed and url schemes are opened on mobile apps.
 
-Add some query parameters to test:
-
-- For prod environment:
-  - [https](https://comaps.at/B4srhdHVVt/Some+Name)
-  - [https ru](https://comaps.at/AwAAAAAAAA/%d0%9c%d0%b8%d0%bd%d1%81%d0%ba_%d1%83%d0%bb._%d0%9b%d0%b5%d0%bd%d0%b8%d0%bd%d0%b0_9)
+For example:
+https://comaps.at/B4srhdHVVt/Some+Name
 
 ## Requirements
 
