@@ -241,19 +241,18 @@
         zoom: zoom
     });
 
-    let theme;
+    const darkStyle = 'https://tiles.openfreemap.org/styles/fiord';
+    const lightStyle = 'https://tiles.openfreemap.org/styles/bright';
+    
+    // For first page load
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      map.setStyle(darkStyle);
+    }
 
-    setInterval(() => {
-      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches && theme != "dark") {
-        theme = "dark";
-        map.setStyle('https://tiles.openfreemap.org/styles/fiord');
-      }
-
-      else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches && theme != "light") {
-        theme = "light";
-        map.setStyle('https://tiles.openfreemap.org/styles/bright');
-      }
-    }, 10);
+    // For theme changes after page load
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+      map.setStyle(event.matches ? darkStyle : lightStyle);
+    });
 
     map.addControl(
         new maplibregl.NavigationControl({
