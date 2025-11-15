@@ -3,7 +3,7 @@ import { onGe0Decode } from './ge0';
 
 const NOT_FOUND_REDIRECT_URL = 'https://comaps.app';
 const GE0_TEMPLATE_PATH = '/ge0.html';
-const APPSTORE = 'fixme';//TODO: Update'https://apps.apple.com/app/organic-maps/id1567437057';
+const APPSTORE = 'https://apps.apple.com/us/app/comaps/id6747180809';
 const GOOGLE = 'https://play.google.com/store/apps/details?id=app.comaps.google';
 const HUAWEI = 'fixme';//TODO: Update'https://appgallery.huawei.com/#/app/C104325611';
 const FDROID = 'https://f-droid.org/en/packages/app.comaps.fdroid/';
