@@ -28,3 +28,7 @@ Currently, any commit to Codeberg is mirrored to github.com/zyphlar/url-processo
 
 Deploy to prod manually using `npx wrangler publish --env comaps` or this
 [action](https://codeberg.org/comaps/url-processor/actions/workflows/deploy-master-to-prod.yml).
+
+## LICENSE
+
+See the LICENSE file.
