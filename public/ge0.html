@@ -144,6 +144,26 @@
       color: black;
     }
 
+    .error-message {
+      display: flex;
+      flex-direction: column;
+
+      position: relative;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .error-message-img {
+      margin: auto;
+      width: 7.5rem;
+    }
+
+    .error-message-txt {
+      color: black;
+      text-align: center;
+    }
+
     #notif.show {
       visibility: visible;
       animation: fadein 0.5s, fadeout 0.5s 1s;
@@ -228,6 +248,17 @@
       el.className = "show";
       setTimeout(function(){ el.className = el.className.replace("show", ""); }, 1500);
       navigator.clipboard.writeText("${lat}, ${lon}");
+    }
+
+    var canvas = document.createElement('canvas'); 
+    if (!(canvas.getContext('webgl') || canvas.getContext('experimental-webgl'))) {
+      document.getElementById("map").innerHTML = `
+      <div class='error-message'>
+        <img class='error-message-img' src='/icons/error-icon.svg'>
+        <h1 class='error-message-txt'>WebGL is required to show the map</h1>
+        <p class='error-message-txt'>WebGL is either disabled or unsupported; please enable it or use another browser</p>
+      </div>
+      `;
     }
 
     var lat = ${ lat };
